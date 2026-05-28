@@ -1,0 +1,17 @@
+/* Resetujemo margine i postavljamo tamnu kovačku pozadinu */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #121212; /* Skroz tamna pozadina */
+  color: #e0e0e0; /* Svetlo sivi tekst */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Kontejner koji drži sadržaj stranica ispod Navbara */
+.main-content {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
