@@ -7,6 +7,7 @@ const articleRoutes = require('./routes/articleRoutes');
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const promoCodeRoutes = require('./routes/promoCodeRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Učitavanje varijabli
 dotenv.config();
@@ -25,12 +26,17 @@ app.get('/', (req, res) => {
     res.send('Backend uspešno radi!');
 });
 
-//Rute redom za article, item, auth, order, promo kodove
+//Rute redom za article, item, auth, order, promo kodove, korisnike
+// PRIVREMENA TEST RUTA ZA KORISNIKE
+app.get('/api/users/test', (req, res) => {
+  res.json({ poruka: "Backend direktno vidi ovu rutu!" });
+});
 app.use('/api/articles', articleRoutes);
 app.use('/api/items', itemRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/promoCode', promoCodeRoutes);
+app.use('/api/users', userRoutes);
 
 // Pokretanje servera
 const PORT = process.env.PORT || 5000;

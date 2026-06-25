@@ -4,7 +4,7 @@ const orderController = require('../controllers/orderController');
 
 const { protect, restrictTo } = require('../middleware/authMiddleware');
 
-router.get('/', protect, restrictTo('Admin'), orderController.getOrders);
+router.get('/', protect, orderController.getOrders);
 router.post('/', protect, orderController.createOrder);
 router.delete('/:id', protect, restrictTo('Admin'), orderController.deleteOrder);
 router.put('/:id', protect, restrictTo('Admin'), orderController.updateOrder);

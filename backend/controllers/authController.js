@@ -51,10 +51,14 @@ exports.login = async (req, res) => {
             message: "Uspješan login!",
             token: token,
             korisnik: {
-                id: korisnik._id,
+                _id: korisnik._id,
                 ime: korisnik.ime,
                 email: korisnik.email,
-                uloga: korisnik.uloga
+                uloga: korisnik.uloga,
+                telefon: korisnik.telefon,
+                adresa: korisnik.adresa,
+                createdAt: korisnik.createdAt,
+                updatedAt: korisnik.updatedAt,
             }
         });
 

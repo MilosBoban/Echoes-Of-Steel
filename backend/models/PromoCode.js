@@ -6,7 +6,8 @@ const PromoCodeSchema = new mongoose.Schema({
         required: true,
         unique: true, // Samo unikatni kodovi
         trim: true, //Brise sve razmake i tabove
-        uppercase: true // Da vi kodovi budu velikim slovima
+        uppercase: true, // Da vi kodovi budu velikim slovima
+        index: true // Da bi pretraga po kodu bila brza
     },
     procenatPopusta: {
         type: Number,

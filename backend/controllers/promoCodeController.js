@@ -49,3 +49,26 @@ exports.updatePromoCode = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
+
+exports.getPromoCodeByString = async (req, res) => {
+  try {
+    // 1. Uzimamo string iz URL-a (npr. /api/promo/kod/RELIQA10)
+    const unijetiKod = req.params.kod.toUpperCase(); 
+
+    // 2. Koristimo findOne i prosbjeđujemo objekat sa uslovom { naziv_polja_u_bazi: vrijednost }
+    const pronadjeniKod = await PromoCode.findOne({ kod: unijetiKod });
+
+    // 3. Ako kod ne postoji u bazi, vraćamo 404
+    if (!pronadjeniKod) {
+      return res.status(404).json({ poruka: 'Promo kod nije pronađen u knjigama.' });
+    }
+
+    // 4. Ako postoji, šaljemo ga frontendu
+    res.status(200).json(pronadjeniKod);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ poruka: 'Greška na serveru prilikom pretrage koda.' });
+  }
+};
+

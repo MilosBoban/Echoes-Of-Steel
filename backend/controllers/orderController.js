@@ -4,11 +4,20 @@ const PromoCode = require('../models/PromoCode');
 
 exports.getOrders = async (req, res) => {
     try {
-        const narudzbe = await Order.find().populate('korisnik', 'ime email');
-        res.status(200).json(narudzbe);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+    let filter = {};
+    
+    // 💡 Hvatamo userId iz URL query-ja: /api/orders?userId=NEKI_ID
+    if (req.query.userId) {
+      filter.korisnik = req.query.userId;
     }
+
+    // Izvlačimo narudžbine i opciono radimo populate artikala ako je potrebno
+    const orders = await Order.find(filter).populate('artikli.artikal').sort({ createdAt: -1 });
+    
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ message: "Greška pri dobavljanju narudžbina", error: error.message });
+  }
 };
 
 exports.createOrder = async (req, res) => {
@@ -34,7 +43,12 @@ exports.createOrder = async (req, res) => {
             const cijenaPoKomadu = pronadjeniArtikal.cijena;
             medjusuma += cijenaPoKomadu * stavka.kolicina;
 
-            pronadjeniArtikal.zaliha--; //Smanjivanje zalihe artikla
+            if(pronadjeniArtikal.zaliha < stavka.kolicina) {
+                return res.status(400).json({ message: `Nema dovoljno zaliha za artikal ${pronadjeniArtikal.naziv}. Dostupno: ${pronadjeniArtikal.zaliha}, traženo: ${stavka.kolicina}` });
+            }
+
+            pronadjeniArtikal.zaliha = pronadjeniArtikal.zaliha - stavka.kolicina; //Smanjivanje zalihe artikla
+            await pronadjeniArtikal.save(); // Spremanje promjene u bazi
 
             obradjeniArtikli.push({
                 artikal: stavka.artikal,
@@ -67,7 +81,13 @@ exports.createOrder = async (req, res) => {
                 return res.status(400).json({ message: "Ovaj promo kod je istekao." });
             }
 
+            if (pronadjeniKod.brojKoriscenja <= 0) {
+                return res.status(400).json({ message: "Ovaj promo kod je dostigao maksimalan broj korišćenja." });
+            }
+
             procenatPopusta = pronadjeniKod.procenatPopusta;
+            pronadjeniKod.brojKoriscenja = pronadjeniKod.brojKoriscenja - 1; // Smanjivanje broja korišćenja koda
+            await pronadjeniKod.save(); // Spremanje promjene u bazi
         }
         // --- Logika za promo kod kraj ---
 
