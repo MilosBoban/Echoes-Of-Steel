@@ -85,10 +85,12 @@ function Shop() {
               className="bg-stone-800 text-stone-100 p-2.5 rounded-lg border border-stone-700 focus:border-amber-500 focus:outline-none"
             >
               <option value="sve">Svi Periodi</option>
-              <option value="Rimsko Carstvo">Rimsko Carstvo</option>
-              <option value="Antička Grčka">Antička Grčka</option>
-              <option value="Srednji Vijek">Srednji Vijek</option>
-              <option value="Feudalni Japan">Feudalni Japan</option>
+              <option value="Antički Rim">Antički Rim</option>
+              <option value="Vikinško doba">Vikinško doba</option>
+              <option value="Doba Krstaša i Viteza">Doba Krstaša i Viteza</option>
+              <option value="Doba Nemanjića">Doba Nemanjića</option>
+              <option value="Doba Samuraja">Doba Samuraja</option>
+              <option value="Doba Renesanse i Conquistadora">Doba Renesanse i Conquistadora</option>
             </select>
           </div>
 

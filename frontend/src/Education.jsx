@@ -41,8 +41,53 @@ function Education() {
       pitanje: "Iz koje ere potiče čuveni dvoručni mač korigovan za sječenje teških oklopa?",
       opcije: ["Stari Egipat", "Srednji Vijek", "Feudalni Japan", "Rimsko Carstvo"],
       tacanOdgovor: "Srednji Vijek"
+    },
+    {
+    "pitanje": "Koji prepoznatljivi rimski oklop se sastojao od gvozdenih segmenata i traka povezanih kožom?",
+    "opcije": ["Lorica Hamata", "Lorica Squamata", "Lorica Segmentata", "Linotoraks"],
+    "tacanOdgovor": "Lorica Segmentata"
+    },
+    {
+    "pitanje": "Kako se zovu legendarni vikinški mačevi iz rano-srednjovekovnog perioda koji su imali neobično čist sastav čelika za to vreme?",
+    "opcije": ["Ulfberht", "Excalibur", "Masamune", "Joyeuse"],
+    "tacanOdgovor": "Ulfberht"
+    },
+    {
+    "pitanje": "Koji je bio stvarni oblik šlemova koje su nosili Vikinzi u borbi?",
+    "opcije": ["Šlemovi sa rogovima", "Obični poluloptasti šlemovi bez rogova", "Kacige sa zmajevim krilima", "Teški krstaški šlemovi"],
+    "tacanOdgovor": "Obični poluloptasti šlemovi bez rogova"
+    },
+    {
+    "pitanje": "Kako se zvao čuveni mač Karla Velikog koji se vekovima koristio tokom krunisanja francuskih kraljeva?",
+    "opcije": ["Durendal", "Joyeuse", "Legarta", "Curtana"],
+    "tacanOdgovor": "Joyeuse"
+    },
+    {
+    "pitanje": "Iz koje države ili carstva potiče tradicija nošenja krune u obliku zatvorene 'steme' sa visećim draguljima (pendilijama), kakvu su nosili i Nemanjići?",
+    "opcije": ["Sveto rimsko carstvo", "Mletačka republika", "Vizantijsko carstvo", "Kraljevina Francuska"],
+    "tacanOdgovor": "Vizantijsko carstvo"
+    },
+    {
+    "pitanje": "Koji se tip mača sa specifičnom drškom u obliku romboida razvio na našim prostorima, a u Veneciji je bio poznat kao 'Schiavona'?",
+    "opcije": ["Srpski (slovenski) mač", "Rapir", "Katana", "Gotički dvoručni mač"],
+    "tacanOdgovor": "Srpski (slovenski) mač"
+    },
+    {
+    "pitanje": "Kako se zvao najveći kovač mačeva u istoriji feudalnog Japana, čija je katana 'Honjo' bila simbol šogunata?",
+    "opcije": ["Hatori Hanzo", "Mijamoto Musasi", "Oda Nobunaga", "Masamune"],
+    "tacanOdgovor": "Masamune"
+    },
+    {
+    "pitanje": "Šta je 'Mempo' u opremi japanskih samuraja?",
+    "opcije": ["Dugačko koplje", "Gvozdena maska za lice sa zastrašujućim izrazom", "Štitnik za potkolenice", "Svileni pojas za katanu"],
+    "tacanOdgovor": "Gvozdena maska za lice sa zastrašujućim izrazom"
+    },
+    {
+    "pitanje": "Koji elegantni, dugi i tanki mač je bio obavezan modni detalj i oružje za duelističke intrige među evropskim plemstvom u renesansi?",
+    "opcije": ["Gladius", "Dvoručni mač", "Rapir", "Sablja"],
+    "tacanOdgovor": "Rapir"
     }
-  ];
+    ];
 
   // Kviz logika
   const generisiNasumicnaPitanja = () => {
@@ -96,7 +141,7 @@ function Education() {
     dobaviPodatke();
   }, []);
 
-  const DOZVOLJENI_PERIODI = ["Rimsko Carstvo", "Antička Grčka", "Srednji Vijek", "Feudalni Japan"];
+  const DOZVOLJENI_PERIODI = ["Antički Rim", "Vikinško doba", "Doba Krstaša i Viteza", "Doba Nemanjića", "Doba Samuraja", "Doba Renesanse i Conquistadora"];
   const vodiUProdavnicu = () => {
     if (aktivnaEra && DOZVOLJENI_PERIODI.includes(aktivnaEra.naslov)) {
     navigate('/shop', { state: { selektovanaEra: aktivnaEra.naslov } });

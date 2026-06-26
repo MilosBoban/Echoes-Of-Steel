@@ -13,7 +13,7 @@ function ProductCard({ id, naziv, cijena, period, slika }) {
         <img 
           src={slika} 
           alt={naziv} 
-          className="bg-stone-600 w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity"
+          className="bg-stone-900 w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity"
         />
         {/* PERIOD */}
         <span className="absolute bottom-1 right-2 text-[9px] font-bold uppercase tracking-widest text-amber-400 bg-stone-950/80 px-2 py-1 rounded">
